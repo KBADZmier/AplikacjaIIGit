@@ -1,11 +1,21 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import { Food } from './models/Food.js';
+import bodyParser from 'body-parser';
+import router from './login.js'
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
+
+
+app.use('/login', router);
+
+
+app.use(bodyParser.json());
+
+
 
 mongoose.connect("mongodb://localhost:27017/Food", {
   useNewUrlParser: true,

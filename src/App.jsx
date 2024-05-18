@@ -2,8 +2,11 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import AddFood from "./AddFood";
 import DeleteFood from "./DeleteFood";
+import Register from '/LoginRegister/Register';
+import Login from '/LoginRegister/LoginUser';
+
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
-import {authenticate, generateAccessToken, handleLogin} from "./Login"
+import {authenticate, generateAccessToken, handleLogin} from "./LoginFun"
 function App() {
   const [foods, setFoods] = useState([]);
   const [email, setEmail] = useState('');
@@ -11,7 +14,7 @@ function App() {
   const [error, setError] = useState('');
 
 
-
+  const [token, setToken] = useState(localStorage.getItem('token') || '');
 
   useEffect(() => {
     const fetchFoods = async () => {
@@ -49,9 +52,22 @@ function App() {
         </nav>
 
         <Routes>
+          <Route exact path="/" element={<Home />} />
           <Route exact path="/AddFood" element={<AddFood/>} />
           <Route exact path="/DeleteFood" element={<DeleteFood/>} />
         </Routes>
+
+        <div>
+            {token ? (
+                <div>Welcome! You are logged in.</div>
+            ) : (
+                <div>
+                    <Register />
+                    <Login setToken={setToken} />
+                </div>
+            )}
+        </div>
+
       </div>
     </Router>
 
@@ -86,5 +102,10 @@ function App() {
     
   );
 }
-
+const Home = () => (
+  <div>
+      <h2>Home</h2>
+      <p>Welcome to the Food App!</p>
+  </div>
+);
 export default App;
