@@ -4,14 +4,15 @@ import axios from 'axios';
 function Register() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [role, setRole] = useState('user');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('/login/register', { username, password });
+            await axios.post('/login/register', { username, password, role });
             alert('User registered successfully');
         } catch (err) {
-            alert('Error registering user: ' + err.response.data);
+            alert('Error registering user: ' + (err.response ? err.response.data : err.message));
         }
     };
 
@@ -31,6 +32,7 @@ function Register() {
                 placeholder="Password" 
                 required 
             />
+          
             <button type="submit">Register</button>
         </form>
     );

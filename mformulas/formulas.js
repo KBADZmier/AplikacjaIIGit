@@ -17,6 +17,7 @@ function ZK(height,weight,old)
 {
 var zkm=66.5 + (13,7 * weight) + (5 * height) - (6,8 * old)
 var zkk =65.5 +(9,6 * weight) + (1,85 * height) - (4,7 * old)
+return zkm, zkk;
 }
 
-export{BMI,ZK};
+export{BMI,zkm, zkk};

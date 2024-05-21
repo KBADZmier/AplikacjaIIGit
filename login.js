@@ -7,11 +7,11 @@ import User from './models/User.js';
 const router = express.Router();
 const secret = 'your_jwt_secret';
 
-// Rejestracja użytkownika
+//rejestracja
 router.post('/register', async (req, res) => {
-    const { username, password } = req.body;
+    const { username, password, role = 'user' } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new User({ username, password: hashedPassword });
+    const user = new User({ username, password: hashedPassword, role });
     try {
         await user.save();
         res.status(201).send('User registered');
@@ -20,15 +20,27 @@ router.post('/register', async (req, res) => {
     }
 });
 
-// Logowanie użytkownika
+//logowanie
 router.post('/login', async (req, res) => {
     const { username, password } = req.body;
-    const user = await User.findOne({ username });
-    if (user && await bcrypt.compare(password, user.password)) {
-        const token = jwt.sign({ username: user.username }, secret);
-        res.json({ token });
-    } else {
-        res.status(401).send('Invalid credentials');
+
+    try {
+        const user = await User.findOne({ username });
+        if (!user) {
+            return res.status(401).send('Invalid credentials');
+        }
+        const passwordMatch = await bcrypt.compare(password, user.password);
+        if (!passwordMatch) {
+            return res.status(401).send('Invalid credentials');
+        }
+        const role = user.role;
+//token
+        const token = jwt.sign({ username: user.username, role }, secret);
+        res.json({ token, username: user.username, role });
+    } catch (error) {
+        console.error('Login error:', error);
+        res.status(500).json({ error: 'Internal server error' });
     }
 });
+
 export default router;

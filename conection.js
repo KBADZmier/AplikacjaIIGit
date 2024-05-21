@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import { Food } from './models/Food.js';
 import bodyParser from 'body-parser';
 import router from './login.js'
+import authenticateToken, { authorizeRole } from './authenticateToken.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -22,7 +23,7 @@ mongoose.connect("mongodb://localhost:27017/Food", {
   useUnifiedTopology: true,
 });
 
-// Naprawa błędu z dostępem na inny host
+//Naprawa błędu z dostępem na inny host
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://localhost:5173");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -52,7 +53,7 @@ app.post('/api/foods', async (req, res) => {
 });
 
 
-app.delete('/api/foods/:id', async (req, res) => {
+app.delete('/api/foods/:id', authorizeRole(['admin']),async (req, res) => {
     try {
       const { id } = req.params;
       const deletedFood = await Food.findByIdAndDelete(id);
