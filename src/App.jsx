@@ -7,7 +7,8 @@ import Register from '/LoginRegister/Register';
 import LoginUser from '/LoginRegister/LoginUser';
 import AllFood from './AllFood';
 import Admin from './Admin';
-
+import UserInfo from './UserInfo';
+import User from '../models/User';
 function App() {
     const [token, setToken] = useState(localStorage.getItem('token') || '');
     const [username, setUsername] = useState(localStorage.getItem('username') || '');
@@ -32,6 +33,7 @@ function App() {
                         {role == 'admin' && <li><Link to="/DeleteFood">Delete Food</Link></li>}
                         {role == 'admin' && <li><Link to="/AllFood">All Food</Link></li>}
                         {role == 'admin' && <li><Link to="/admin">Admin</Link></li>}
+                        {role == 'user' && <li><Link to="/info">Info</Link></li>}
                     </ul>
                 </nav>
 
@@ -41,6 +43,7 @@ function App() {
                     <Route exact path="/AllFood" element={role == 'admin' ? <AllFood /> : <Navigate to="/" />} />
                     <Route exact path="/DeleteFood" element={role == 'admin' ? <DeleteFood /> : <Navigate to="/" />} />
                     <Route exact path="/admin" element={role == 'admin' ? <Admin /> : <Navigate to="/" />} />
+                    <Route exact path="/info" element={role == 'user' ? <UserInfo /> : <Navigate to="/" />} />
                 </Routes>
 
                 <div>

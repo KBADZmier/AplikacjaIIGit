@@ -26,7 +26,7 @@ function AddFood() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log("Name:", name, "Value:", value);
+    //console.log("Name:", name, "Value:", value);
     setFormData({
       ...formData,
       [name]: value
@@ -42,7 +42,7 @@ function AddFood() {
           return [fieldMapping[key], mappedValue];
         })
       );
-      console.log(mappedData);
+      //console.log(mappedData);
       const response = await axios.post('http://localhost:5000/api/foods', mappedData );
       
       setMessage('Dodano pomyślnie!');

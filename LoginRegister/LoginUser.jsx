@@ -10,8 +10,7 @@ function LoginUser({ setToken, setUsername, setRole }) {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post('/login/login', { username, password});
-            console.log('Login response:', response.data);
+            const response = await axios.post('login/login', { username, password});
             const { token, username: receivedUsername, role } = response.data;
             setToken(token);
             setUsername(receivedUsername);
@@ -19,7 +18,8 @@ function LoginUser({ setToken, setUsername, setRole }) {
             localStorage.setItem('token', token);
             localStorage.setItem('username', receivedUsername);
             localStorage.setItem('role', role);
-            console.log(role);
+            console.log(role,token);
+            
             if (role === 'admin') {
                 navigate('/admin');
             } else {

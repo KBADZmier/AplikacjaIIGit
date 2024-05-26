@@ -6,18 +6,18 @@
 // 2,0 - ciężka praca fizyczna, codzienny trening
 //0,2 budowanie masy/redukcja
 
-function BMI(height, weight)
+function forPersonBmi(height, weight)
 {
-var bmi = weight /height*height;
-
+var bmi = weight /(height*height/10000);
+return bmi;
 };
 
 
 function ZK(height,weight,old)
 {
-var zkm=66.5 + (13,7 * weight) + (5 * height) - (6,8 * old)
-var zkk =65.5 +(9,6 * weight) + (1,85 * height) - (4,7 * old)
+var zkm= 66.5 + (13,7 * weight) + (5 * height) - (6,8 * old)
+var zkk= 65.5 +(9,6 * weight) + (1,85 * height) - (4,7 * old)
 return zkm, zkk;
 }
 
-export{BMI,zkm, zkk};
+export  {forPersonBmi};
