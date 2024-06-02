@@ -4,6 +4,8 @@ import { Food } from './models/Food.js';
 import bodyParser from 'body-parser';
 import router from './login.js'
 import User from './models/User.js';
+import  { Meal }  from './models/Meals.js';
+
 import authenticateToken, { authorizeRole } from './authenticateToken.js';
 
 const app = express();
@@ -128,6 +130,53 @@ app.put('/user/info', authenticateToken, async (req, res) => {
   } catch (error) {
       console.error('Error updating user data:', error);
       res.status(500).send('Internal server error');
+  }
+});
+
+
+app.post('/api/meals', authenticateToken, async (req, res) => {
+  const { mealType, foodId, quantity } = req.body;
+  const userId = req.user._id;
+
+  console.log(mealType, foodId, quantity, userId);
+console.log('User ID:', userId);
+  try {
+    let meal = await Meal.findOne({ userId, date: new Date().setHours(0, 0, 0, 0), type: mealType });
+
+    if (!meal) {
+      meal = new Meal({
+        userId,
+        date: new Date().setHours(0, 0, 0, 0),
+        type: mealType,
+        foodItems: []
+      });
+    }
+
+    meal.foodItems.push({ foodId, quantity });
+    await meal.save();
+
+    res.status(201).send(meal);
+  } catch (error) {
+    console.error('Error saving meal data:', error);
+    res.status(500).send('Internal server error');
+  }
+});
+
+
+
+app.get('/api/meals', authenticateToken, async (req, res) => {
+  const userId = req.user._id;
+  const today = new Date().setHours(0, 0, 0, 0);
+
+  try {
+    const meals = await Meal.find({
+      userId,
+      date: today
+    }).populate('foodItems.foodId');
+    res.send(meals);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server Error');
   }
 });
 

@@ -34,14 +34,14 @@ router.post('/login', async (req, res) => {
             return res.status(401).send('Invalid credentials');
         }
         const role = user.role;
-//token
-        const token = jwt.sign({ username: user.username, role }, secret);
-        res.json({ token, username: user.username, role }); 
+        const token = jwt.sign({ _id: user._id, username: user.username, role }, secret);
+        res.json({ token, username: user.username, role, _id: user._id });
         console.log(token);//
     } catch (error) {
         console.error('Login error:', error);
         res.status(500).json({ error: 'Internal server error' });
     }
 });
+
 
 export default router;

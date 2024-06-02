@@ -9,15 +9,24 @@
 function forPersonBmi(height, weight)
 {
 var bmi = weight /(height*height/10000);
-return bmi;
+return bmi.toFixed(2);
 };
 
 
-function ZK(height,weight,old)
+function ZKM(height,weight,old,active)
 {
-var zkm= 66.5 + (13,7 * weight) + (5 * height) - (6,8 * old)
-var zkk= 65.5 +(9,6 * weight) + (1,85 * height) - (4,7 * old)
-return zkm, zkk;
+var zkm= (66.5 + (13,7 * weight) + (5 * height) - (6,8 * old))*active
+
+return zkm;
 }
 
-export  {forPersonBmi};
+
+function ZKK(height,weight,old,active)
+{
+    var zkk= (65.5 +(9,6 * weight) + (1,85 * height) - (4,7 * old))*active
+    return zkk;
+}
+
+
+
+export { forPersonBmi, ZKM, ZKK };

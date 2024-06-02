@@ -9,6 +9,7 @@ import AllFood from './AllFood';
 import Admin from './Admin';
 import UserInfo from './UserInfo';
 import User from '../models/User';
+import MealManagement from './MealManagement';
 function App() {
     const [token, setToken] = useState(localStorage.getItem('token') || '');
     const [username, setUsername] = useState(localStorage.getItem('username') || '');
@@ -29,6 +30,7 @@ function App() {
                 <nav>
                     <ul>
                         <li><Link to="/">Home</Link></li>
+                        {role == 'user' && <li><Link to="/MealsManagement">Menu</Link></li>}
                         {role == 'user' && <li><Link to="/AddFood">Add Food</Link></li>}
                         {role == 'admin' && <li><Link to="/DeleteFood">Delete Food</Link></li>}
                         {role == 'admin' && <li><Link to="/AllFood">All Food</Link></li>}
@@ -39,6 +41,7 @@ function App() {
 
                 <Routes>
                     <Route exact path="/" element={<Home />} />
+                    <Route exact path="/MealsManagement" element={role == 'user' ? <MealManagement /> : <Navigate to="/" />} />
                     <Route exact path="/AddFood" element={role == 'user' ? <AddFood /> : <Navigate to="/" />} />
                     <Route exact path="/AllFood" element={role == 'admin' ? <AllFood /> : <Navigate to="/" />} />
                     <Route exact path="/DeleteFood" element={role == 'admin' ? <DeleteFood /> : <Navigate to="/" />} />
