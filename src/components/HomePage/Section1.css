@@ -1,0 +1,19 @@
+/* Section1.css */
+.section1 {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5;
+  text-align: center;
+}
+
+/* Section2.css */
+.section2 {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e0e0e0;
+  text-align: center;
+}
