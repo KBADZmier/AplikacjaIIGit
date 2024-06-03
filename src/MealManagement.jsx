@@ -7,7 +7,14 @@ function MealManagement() {
   const [newFoodItem, setNewFoodItem] = useState({
     mealType: '',
     foodId: '',
-    quantity: 0
+    quantity: 0,
+    Nazwa: '',
+    Kcal: 0,
+    Jednostka: '',
+    Ilosc_tluszczu: 0,
+    Ilosc_bialka: 0,
+    Ilosc_weglowodanow: 0,
+    Rodzaj: ''
   });
   const [availableFoods, setAvailableFoods] = useState([]);
 
@@ -40,21 +47,45 @@ function MealManagement() {
 
   const handleMealChange = (e) => {
     const { name, value } = e.target;
-    const selectedFood = availableFoods.find(food => food._id === value);
-    setNewFoodItem({ ...newFoodItem, [name]: value, Nazwa: selectedFood ? selectedFood.Nazwa : '' });
+
+    if (name === 'foodId') {
+      const selectedFood = availableFoods.find(food => food._id === value);
+      setNewFoodItem({
+        ...newFoodItem,
+        [name]: value,
+        Nazwa: selectedFood ? selectedFood.Nazwa : '',
+        Kcal: selectedFood ? selectedFood.Kcal : 0,
+        Jednostka: selectedFood ? selectedFood.Jednostka : '',
+        Ilosc_tluszczu: selectedFood ? selectedFood['Ilosc_tluszczu (g)'] : 0,
+        Ilosc_bialka: selectedFood ? selectedFood['Ilosc_bialka (g)'] : 0,
+        Ilosc_weglowodanow: selectedFood ? selectedFood['Ilosc_weglowodanow (g)'] : 0,
+        Rodzaj: selectedFood ? selectedFood.Rodzaj : ''
+      });
+    } else {
+      setNewFoodItem({
+        ...newFoodItem,
+        [name]: value
+      });
+    }
   };
-  
 
   const addFoodToMeal = async () => {
     console.log(newFoodItem);
-    console.log(token);
-  
     const mealData = {
       mealType: newFoodItem.mealType,
       foodId: newFoodItem.foodId,
-      quantity: newFoodItem.quantity
+      quantity: newFoodItem.quantity,
+      Nazwa: newFoodItem.Nazwa,
+      Kcal: newFoodItem.Kcal,
+      Jednostka: newFoodItem.Jednostka,
+      Ilosc_tluszczu: newFoodItem.Ilosc_tluszczu,
+      Ilosc_bialka: newFoodItem.Ilosc_bialka,
+      Ilosc_weglowodanow: newFoodItem.Ilosc_weglowodanow,
+      Rodzaj: newFoodItem.Rodzaj
     };
-  
+
+    console.log('Sending meal data:', mealData);
+
     try {
       await axios.post('http://localhost:5000/api/meals', mealData, {
         headers: {
@@ -62,17 +93,23 @@ function MealManagement() {
         }
       });
       fetchUserMeals();
-      // Zresetuj nowy produkt
+      
       setNewFoodItem({
         mealType: '',
         foodId: '',
-        quantity: 0
+        quantity: 0,
+        Nazwa: '',
+        Kcal: 0,
+        Jednostka: '',
+        Ilosc_tluszczu: 0,
+        Ilosc_bialka: 0,
+        Ilosc_weglowodanow: 0,
+        Rodzaj: ''
       });
     } catch (error) {
       console.error('Error adding food to meal:', error);
     }
   };
-  
 
   const deleteFoodFromMeal = async (mealId, foodItemId) => {
     try {
@@ -108,24 +145,21 @@ function MealManagement() {
       <button onClick={addFoodToMeal}>Dodaj produkt</button>
       
       <ul>
-      {meals.map(meal => (
-  <li key={meal._id}>
-    <h3>{meal.type}</h3>
-    <ul>
-      {meal.foodItems.map(item => {
-       
-        return (
-          <li key={item._id}>
-            {item.Nazwa}: {item.quantity} sztuk
-            <button onClick={() => deleteFoodFromMeal(meal._id, item._id)}>Usuń produkt</button>
+        {meals.map(meal => (
+          <li key={meal._id}>
+            <h3>{meal.type}</h3>
+            <ul>
+              {meal.foodItems.map(item => (
+                <li key={item.foodId}>
+                  {item.Nazwa}: {item.quantity} {item.Jednostka} ({item.Kcal} Kcal, {item.Ilosc_tluszczu}g tłuszczu, {item.Ilosc_bialka}g białka, {item.Ilosc_weglowodanow}g węglowodanów)
+                  <button onClick={() => deleteFoodFromMeal(meal._id, item.foodId)}>Usuń produkt</button>
+                </li>
+              ))}
+            </ul>
           </li>
-        );
-      })}
-    </ul>
-  </li>
-))}
-
-</ul>
+        ))}
+      </ul>
+      <div>  </div>
     </div>
   );
 }

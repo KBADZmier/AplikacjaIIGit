@@ -135,11 +135,12 @@ app.put('/user/info', authenticateToken, async (req, res) => {
 
 
 app.post('/api/meals', authenticateToken, async (req, res) => {
-  const { mealType, foodId, quantity } = req.body;
+  const { mealType, foodId, quantity, Nazwa, Kcal, Jednostka, Ilosc_tluszczu, Ilosc_bialka, Ilosc_weglowodanow, Rodzaj } = req.body;
   const userId = req.user._id;
 
-  console.log(mealType, foodId, quantity, userId);
-console.log('User ID:', userId);
+  console.log(mealType, foodId, quantity, Nazwa, Kcal, Jednostka, Ilosc_tluszczu, Ilosc_bialka, Ilosc_weglowodanow, Rodzaj, userId);
+  console.log('User ID:', userId);
+  
   try {
     let meal = await Meal.findOne({ userId, date: new Date().setHours(0, 0, 0, 0), type: mealType });
 
@@ -152,7 +153,17 @@ console.log('User ID:', userId);
       });
     }
 
-    meal.foodItems.push({ foodId, quantity });
+    meal.foodItems.push({ 
+      foodId, 
+      quantity, 
+      Nazwa, 
+      Kcal, 
+      Jednostka, 
+      Ilosc_tluszczu, 
+      Ilosc_bialka, 
+      Ilosc_weglowodanow, 
+      Rodzaj 
+    });
     await meal.save();
 
     res.status(201).send(meal);
@@ -161,6 +172,8 @@ console.log('User ID:', userId);
     res.status(500).send('Internal server error');
   }
 });
+
+
 
 
 

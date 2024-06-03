@@ -1,11 +1,7 @@
-// models/Meal.js
+
 import mongoose from 'mongoose';
 
 const mealSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true
-  },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
@@ -22,10 +18,6 @@ const mealSchema = new mongoose.Schema({
     required: true
   },
   foodItems: [{
-    name: {
-      type: String, // Dodaj właściwość name
-      required: true
-    },
     foodId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Food',
@@ -34,9 +26,37 @@ const mealSchema = new mongoose.Schema({
     quantity: {
       type: Number,
       required: true
+    },
+    Nazwa: {
+      type: String,
+      required: true
+    },
+    Kcal: {
+      type: Number,
+      required: true
+    },
+    Jednostka: {
+      type: String,
+      required: true
+    },
+    Ilosc_tluszczu: {
+      type: Number,
+      required: true
+    },
+    Ilosc_bialka: {
+      type: Number,
+      required: true
+    },
+    Ilosc_weglowodanow: {
+      type: Number,
+      required: true
+    },
+    Rodzaj: {
+      type: String,
+      required: true
     }
   }]
 });
 
 const Meal = mongoose.model('Meal', mealSchema);
-export  { Meal };
+export { Meal };
