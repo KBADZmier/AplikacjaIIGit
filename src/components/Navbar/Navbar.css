@@ -91,7 +91,7 @@ nav ul li a.active {
   color: #4d4c4c;
   background-color: #c1ce9b;
   font-weight: bold;
-  border: 2px solid #472a21; /* Dodanie obramowania */
+  border: 2px solid #472a21;
   border-radius: 10px;
   padding: 2px 10px 2px 10px;
   text-align: center;

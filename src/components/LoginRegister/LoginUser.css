@@ -1,0 +1,93 @@
+.page {
+  display: flex;
+  justify-content: center;
+  gap: 150px;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.niema {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-self: flex-start;
+}
+
+.logtyt {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: black;
+}
+
+.zaloz {
+  color: #4d4c4c;
+  background-color: #c1ce9b;
+  font-weight: bold;
+  border: 2px solid #472a21;
+  text-align: center;
+  font-size: 1.1rem;
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.zaloz:hover {
+  background-color: #333; /* Zmiana koloru tła przy najechaniu */
+  color: #c1ce9b;
+  box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.7); /* Dodanie cienia przy najechaniu */
+}
+
+.formularz-logowania {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.formularz-logowania form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.formularz-logowania label {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.formularz-logowania input {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.formularz-logowania button {
+  color: #4d4c4c;
+  background-color: #c1ce9b;
+  font-weight: bold;
+  border: 2px solid #472a21;
+  text-align: center;
+  font-size: 1.1rem;
+  width: 60%;
+  margin: auto;
+  margin-top: 10px;
+  justify-content: center;
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.formularz-logowania button:hover {
+  background-color: #0056b3;
+}
+
+.forgot-password {
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
