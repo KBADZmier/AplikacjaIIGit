@@ -31,11 +31,15 @@ function LoginUser({ setToken, setUsername, setRole }) {
     }
   };
 
+  const handleSignUp = () => {
+    navigate("/signup");
+  };
+
   return (
     <div className="page">
       <div className="niema">
         <h1 className="logtyt">Nie masz jeszcze konta?</h1>
-        <button className="zaloz">Załóż konto</button>
+        <button className="zaloz" onClick={handleSignUp}>Załóż konto</button>
       </div>
       <div className="formularz-logowania">
         <h1 className="logtyt">Logowanie</h1>
