@@ -187,11 +187,40 @@ app.get('/api/meals', authenticateToken, async (req, res) => {
       date: today
     }).populate('foodItems.foodId');
     res.send(meals);
+    console.log(meals)
   } catch (error) {
     console.error(error);
     res.status(500).send('Server Error');
   }
 });
+
+
+app.delete('/api/meals/:mealId/foods/:foodItemId', authenticateToken, async (req, res) => {
+  const { mealId, foodItemId } = req.params;
+  
+  try {
+    const meal = await Meal.findById(mealId);
+    if (!meal) {
+      return res.status(404).json({ message: 'Meal not found' });
+    }
+    meal.foodItems.forEach((item, index) => {
+      if (item.foodId.toString() === foodItemId) {
+        meal.foodItems.splice(index, 1);
+      }
+    });
+  
+
+    await meal.save();
+  
+    res.status(200).json({ message: 'Food item removed' });
+  } catch (error) {
+    console.error('Error deleting food from meal:', error);
+    res.status(500).send('Server Error');
+  }}
+);
+
+
+
 
 
 

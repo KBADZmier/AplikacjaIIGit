@@ -13,15 +13,15 @@ const foodSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  'Ilosc_tluszczu (g)': {
+  'Ilosc_tluszczu': {
     type: Number,
     required: true
   },
-  'Ilosc_bialka (g)': {
+  'Ilosc_bialka': {
     type: Number,
     required: true
   },
-  'Ilosc_weglowodanow (g)': {
+  'Ilosc_weglowodanow': {
     type: Number,
     required: true
   },

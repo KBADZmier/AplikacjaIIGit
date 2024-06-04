@@ -5,9 +5,9 @@ const fieldMapping = {
   name:"Nazwa",
   kcal:"Kcal", 
   unit:"Jednostka" ,
-  fat:"Ilosc_tluszczu (g)", 
-  protein:"Ilosc_bialka (g)", 
-  carbo:"Ilosc_weglowodanow (g)",
+  fat:"Ilosc_tluszczu", 
+  protein:"Ilosc_bialka", 
+  carbo:"Ilosc_weglowodanow",
   type:"Rodzaj"
 };
 

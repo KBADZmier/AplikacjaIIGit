@@ -17,6 +17,10 @@ function MealManagement() {
     Rodzaj: ''
   });
   const [availableFoods, setAvailableFoods] = useState([]);
+  const [kcalSum, setKcalSum] = useState(0);
+  const [carboSum, setCarboSum] = useState(0);
+  const [fatSum, setFatSum] = useState(0);
+  const [proteinSum, setProteinSum] = useState(0);
 
   useEffect(() => {
     fetchUserMeals();
@@ -30,7 +34,36 @@ function MealManagement() {
           'Authorization': `Bearer ${token}`
         }
       });
-      setMeals(response.data);
+      const mealsData = response.data;
+      console.log(mealsData)
+      setMeals(mealsData);
+
+     
+      let totalKcal= 0;
+      let totalProtein=0;
+      let totalCarbo= 0;
+      let totalFat =0;
+    
+      mealsData.forEach(meal => {
+        meal.foodItems.forEach(item => {
+          
+          console.log(item.foodId.Ilosc_weglowodanow)
+          totalKcal += item.foodId.Kcal * item.quantity;
+          totalCarbo += item.foodId.Ilosc_weglowodanow*item.quantity;
+          totalProtein += item.foodId.Ilosc_bialka*item.quantity;
+          totalFat += item.foodId.Ilosc_tluszczu*item.quantity;
+        });
+      });
+
+
+
+
+
+      
+      setKcalSum(totalKcal);
+      setCarboSum(totalCarbo);
+      setFatSum(totalFat);
+      setProteinSum(totalProtein);
     } catch (error) {
       console.error('Error fetching user meals:', error);
     }
@@ -56,9 +89,9 @@ function MealManagement() {
         Nazwa: selectedFood ? selectedFood.Nazwa : '',
         Kcal: selectedFood ? selectedFood.Kcal : 0,
         Jednostka: selectedFood ? selectedFood.Jednostka : '',
-        Ilosc_tluszczu: selectedFood ? selectedFood['Ilosc_tluszczu (g)'] : 0,
-        Ilosc_bialka: selectedFood ? selectedFood['Ilosc_bialka (g)'] : 0,
-        Ilosc_weglowodanow: selectedFood ? selectedFood['Ilosc_weglowodanow (g)'] : 0,
+        Ilosc_tluszczu: selectedFood ? selectedFood.Ilosc_tluszczu  : 0,
+        Ilosc_bialka: selectedFood ? selectedFood.Ilosc_bialka : 0,
+        Ilosc_weglowodanow: selectedFood ? selectedFood.Ilosc_weglowodanow : 0,
         Rodzaj: selectedFood ? selectedFood.Rodzaj : ''
       });
     } else {
@@ -93,7 +126,7 @@ function MealManagement() {
         }
       });
       fetchUserMeals();
-      
+
       setNewFoodItem({
         mealType: '',
         foodId: '',
@@ -112,6 +145,7 @@ function MealManagement() {
   };
 
   const deleteFoodFromMeal = async (mealId, foodItemId) => {
+    console.log(mealId,foodItemId);
     try {
       await axios.delete(`http://localhost:5000/api/meals/${mealId}/foods/${foodItemId}`, {
         headers: {
@@ -123,6 +157,7 @@ function MealManagement() {
       console.error('Error deleting food from meal:', error);
     }
   };
+  
 
   return (
     <div>
@@ -150,16 +185,19 @@ function MealManagement() {
             <h3>{meal.type}</h3>
             <ul>
               {meal.foodItems.map(item => (
-                <li key={item.foodId}>
-                  {item.Nazwa}: {item.quantity} {item.Jednostka} ({item.Kcal} Kcal, {item.Ilosc_tluszczu}g tłuszczu, {item.Ilosc_bialka}g białka, {item.Ilosc_weglowodanow}g węglowodanów)
-                  <button onClick={() => deleteFoodFromMeal(meal._id, item.foodId)}>Usuń produkt</button>
+                <li key={item.foodId._id}>
+                  {item.foodId.Nazwa}: {item.quantity} x{item.foodId.Jednostka} ({item.foodId.Kcal} Kcal, {item.foodId.Ilosc_tluszczu}g tłuszczu, {item.foodId.Ilosc_bialka}g białka, {item.foodId.Ilosc_weglowodanow}g węglowodanów)
+                  <button onClick={() => deleteFoodFromMeal(meal._id, item.foodId._id)}>Usuń produkt</button>
                 </li>
               ))}
             </ul>
           </li>
         ))}
       </ul>
-      <div>  </div>
+      <div>Spożycie kalorii: {kcalSum}</div>
+      <div>Spożycie białka: {proteinSum}</div>
+      <div>Spożycie węglowodanów: {carboSum}</div>
+      <div>Spożycie tłuszczu: {fatSum}</div>
     </div>
   );
 }
