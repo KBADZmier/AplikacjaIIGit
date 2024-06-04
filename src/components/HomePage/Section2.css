@@ -1,0 +1,35 @@
+.section2 {
+  padding: 50px 20px;
+  text-align: center;
+  background-color: #ffffff;
+}
+
+.section2-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 40px;
+}
+
+.transformation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 150px;
+  margin-bottom: 40px;
+}
+
+.transformation div {
+  text-align: center;
+}
+
+.transformation img {
+  width: 300px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.typing-animation {
+  font-size: 1.5rem;
+  color: #333;
+}
