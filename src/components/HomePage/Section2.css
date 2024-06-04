@@ -1,20 +1,35 @@
-/* src/components/Section2.css */
 .section2 {
+  padding: 50px 20px;
+  text-align: center;
+  background-color: #ffffff;
+}
+
+.section2-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 40px;
+}
+
+.transformation {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background-color: #e9ecef;
+  gap: 150px;
+  margin-bottom: 40px;
+}
+
+.transformation div {
   text-align: center;
 }
 
-.section2 h2 {
-  font-size: 2.5rem;
-  margin-bottom: 20px;
+.transformation img {
+  width: 300px;
+  height: auto;
+  border-radius: 10px;
 }
 
-.section2 p {
-  font-size: 1.2rem;
+.typing-animation {
+  font-size: 1.5rem;
   color: #333;
 }

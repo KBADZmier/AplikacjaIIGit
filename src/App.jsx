@@ -1,4 +1,5 @@
 // src/App.jsx
+import Navbar from "./components/Navbar/Navbar";
 import React, { useState } from "react";
 import {
   BrowserRouter as Router,
@@ -17,7 +18,6 @@ import UserInfo from "./components/UserInfo";
 import MealManagement from "./components/MealManagement";
 import Home from "./components/HomePage/Home";
 import "./App.css";
-import Section1 from "./components/HomePage/Section1";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token") || "");
@@ -37,6 +37,7 @@ function App() {
 
   return (
     <Router>
+      <Navbar />
       <div>
         {/* <nav>
           <ul>
@@ -75,7 +76,6 @@ function App() {
             )}
           </ul>
         </nav> */}
-
         <Routes>
           <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/home" element={<Home />} />
@@ -100,11 +100,20 @@ function App() {
             element={role === "admin" ? <Admin /> : <Navigate to="/" />}
           />
           <Route
+            path="/login"
+            element={
+              <LoginUser
+                setToken={setToken}
+                setUsername={setUsername}
+                setRole={setRole}
+              />
+            }
+          />
+          <Route
             path="/info"
             element={role === "user" ? <UserInfo /> : <Navigate to="/" />}
           />
         </Routes>
-
         {/* <div>
           {token ? (
             <div>
@@ -122,8 +131,6 @@ function App() {
             </div>
           )}
         </div> */}
-    
-     
       </div>
     </Router>
   );

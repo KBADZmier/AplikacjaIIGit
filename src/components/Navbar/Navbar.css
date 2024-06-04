@@ -1,0 +1,51 @@
+.navbaro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  padding: 0 50px;
+  background-color: #333; /* Dark grey background */
+
+  background-size: cover;
+  background-position: center;
+}
+
+.lis {
+  padding: 10px 20px;
+  list-style: none;
+  list-style-type: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+ul {
+  list-style-type: none;
+}
+
+.lis:hover {
+  background-color: #555; /* Darker grey on hover */
+  color: #fff; /* White text on hover */
+}
+
+.firma {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fff; /* White text */
+}
+
+.lista {
+  display: flex;
+  gap: 20px;
+}
+
+.login-button {
+  padding: 10px 20px;
+  background-color: #007bff; /* Bootstrap primary color */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-button:hover {
+  background-color: #0056b3; /* Darker shade of Bootstrap primary color */
+}
