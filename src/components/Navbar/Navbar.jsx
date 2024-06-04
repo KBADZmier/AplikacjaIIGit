@@ -1,41 +1,42 @@
-// src/components/Navbar/Navbar.jsx
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 
 const Navbar = ({ token, username, handleLogout }) => {
   return (
     <div className="navbaro">
-      <h1 className="firma">Nazwa</h1>
-      <ul className="lista">
-        <li className="lis">
-          <Link to="/home">Home</Link>
-        </li>
-        <li className="lis">
-          <Link to="/about">O nas</Link>
-        </li>
-        <li className="lis">
-          <Link to="/pricing">Cennik</Link>
-        </li>
-        <li className="lis">
-          <Link to="/blog">Blog</Link>
-        </li>
-        <li>
-          {" "}
-          <div className="auth-section">
+      <nav className="navbar">
+        <div className="navdiv">
+          <div className="logo">
+            <NavLink to="/home">Home</NavLink>
+          </div>
+          <div className="nav-items">
+            <ul>
+              <li>
+                <NavLink to="/home">Home</NavLink>
+              </li>
+              <li>
+                <NavLink to="/about">About</NavLink>
+              </li>
+              <li>
+                <NavLink to="/contact">Contact</NavLink>
+              </li>
+            </ul>
             {token ? (
-              <div>
-                <span className="username"> {username}!</span>
+              <div className="auth-section">
+                <span className="username">{username}!</span>
                 <button onClick={handleLogout} className="logout-button">
                   Logout
                 </button>
               </div>
             ) : (
-              <NavLink to="/login">Login</NavLink>
+              <NavLink to="/login" className="login-button">
+                Zaloguj
+              </NavLink>
             )}
           </div>
-        </li>
-      </ul>
+        </div>
+      </nav>
     </div>
   );
 };
