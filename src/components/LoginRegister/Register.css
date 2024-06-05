@@ -1,70 +1,72 @@
-.page {
+.reg-page {
   display: flex;
   justify-content: center;
   gap: 150px;
   align-items: center;
   margin-top: 50px;
-  margin-bottom: 20rem;
+  margin-bottom: 19rem;
 }
 
-.niema {
+.juz-ma {
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-self: flex-start;
 }
 
-.logtyt {
+.regtyt {
   font-size: 1.8rem;
   font-weight: bold;
   color: black;
 }
 
-.zaloz {
+button.zaloz {
   color: #4d4c4c;
   background-color: #c1ce9b;
   font-weight: bold;
   border: 2px solid #472a21;
   text-align: center;
   font-size: 1.1rem;
-  width: 50%;
+  padding: 0.6em 1.2em;
+
+  width: 70%;
   margin: auto;
-  text-align: center;
   justify-content: center;
   transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.zaloz:hover {
-  background-color: #333; /* Zmiana koloru tła przy najechaniu */
+button.zaloz:hover {
+  background-color: #333;
   color: #c1ce9b;
-  box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.7); /* Dodanie cienia przy najechaniu */
+  box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.7);
+  border: 2px solid #472a21;
 }
 
-.formularz-logowania {
+.form-regis {
   display: flex;
   flex-direction: column;
   text-align: left;
 }
 
-.formularz-logowania form {
+.form-regis form {
   display: flex;
   flex-direction: column;
   width: 300px;
 }
 
-.formularz-logowania label {
+.form-regis label {
   margin-top: 10px;
   margin-bottom: 5px;
 }
 
-.formularz-logowania input {
+.form-regis input {
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
 }
 
-.formularz-logowania button {
+.form-regis button {
   color: #4d4c4c;
   background-color: #c1ce9b;
   font-weight: bold;
@@ -78,28 +80,30 @@
   transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.formularz-logowania button:hover {
-  background-color: #333; /* Zmiana koloru tła przy najechaniu */
+.form-regis button:hover {
+  background-color: #333;
   color: #c1ce9b;
-  box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.7); /* Dodanie cienia przy najechaniu */
+  box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.7);
+  border: 2px solid #472a21;
 }
 
-.forgot-password {
-  margin-top: 10px;
+.checkbox-container {
+  display: flex;
   font-size: 0.9em;
+  align-items: center;
   color: #697054;
-  text-decoration: none;
+  margin-bottom: 10px;
 }
-
-.forgot-password:hover {
+.checkbox-container:hover {
   text-decoration: underline;
   color: #363a2c;
 }
 
-.policy {
-  font-size: 0.9em;
-  color: #697054;
-  text-decoration: none;
-  margin: auto;
+.checkbox-container input {
+  margin-right: 10px;
+}
+
+.error {
+  color: red;
   margin-top: 10px;
 }

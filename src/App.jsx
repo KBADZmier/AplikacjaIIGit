@@ -18,6 +18,7 @@ import UserInfo from "./components/UserInfo";
 import MealManagement from "./components/MealManagement";
 import Home from "./components/HomePage/Home";
 import "./App.css";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token") || "");
@@ -108,7 +109,8 @@ function App() {
                 setRole={setRole}
               />
             }
-          />
+          />{" "}
+          <Route path="/signup" element={<Register />} />
           <Route
             path="/info"
             element={role === "user" ? <UserInfo /> : <Navigate to="/" />}
@@ -132,6 +134,7 @@ function App() {
           )}
         </div> */}
       </div>
+      <Footer />
     </Router>
   );
 }

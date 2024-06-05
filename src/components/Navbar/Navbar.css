@@ -1,12 +1,11 @@
-/* Ogólne style dla Navbar */
 .navbar {
   font-family: Helvetica;
-  border-bottom: 3px solid #694438; /* Zwiększony border-bottom */
   z-index: 100;
+  border-bottom: 2px solid black;
   padding-top: 10px;
   padding-bottom: 10px;
-  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Zwiększony cień */
-  background: linear-gradient(to bottom, #fefae0c9, #a5a391);
+  box-shadow: 2px 8px 12px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to bottom, #f7f7f7, #e0dec5);
 }
 
 .navdiv {
@@ -97,24 +96,24 @@ nav ul li a.active {
   text-align: center;
   font-size: 1.4rem;
   text-decoration: none;
-  margin-left: 15px; /* Odstęp między listą a przyciskiem */
+  margin-left: 15px;
   display: flex;
 
   align-items: center;
   justify-content: center;
-  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease; /* Dodanie przejścia */
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .login-button:hover {
-  background-color: #333; /* Zmiana koloru tła przy najechaniu */
+  background-color: #333;
   color: #c1ce9b;
-  box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.7); /* Dodanie cienia przy najechaniu */
+  box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.7);
 }
 
 .auth-section {
   display: flex;
   align-items: center;
-  margin-left: 15px; /* Odstęp między listą a sekcją uwierzytelniania */
+  margin-left: 15px;
 }
 
 .auth-section .username {
@@ -126,7 +125,7 @@ nav ul li a.active {
   background-color: #000;
   color: #fefae0;
   font-weight: bold;
-  border: 2px solid #694438; /* Dodanie obramowania */
+  border: 2px solid #694438;
   border-radius: 10px;
   padding: 10px;
   cursor: pointer;

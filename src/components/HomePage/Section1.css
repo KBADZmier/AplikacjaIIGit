@@ -1,20 +1,20 @@
 .section1 {
   padding: 20rem 20px;
   text-align: center;
-
-  background-color: #f9f9f9;
+  background: linear-gradient(135deg, #35413f4d, #186d1eee);
+  color: #fff; 
 }
 
 .section1-title {
   font-size: 2.5rem;
   font-weight: bold;
-  color: #333;
+  color: #fff;
   margin-bottom: 20px;
 }
 
 .section1-description {
   font-size: 1.2rem;
-  color: #666;
+  color: #fff;
   margin-bottom: 40px;
 }
 
@@ -32,11 +32,17 @@
 
 .feature h3 {
   font-size: 1.5rem;
-  color: #333;
+  color: #fff;
   margin-bottom: 10px;
 }
 
 .feature p {
   font-size: 1rem;
-  color: #666;
+  color: #fff;
+}
+
+.feature-icon {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  color: #fff; 
 }

@@ -39,12 +39,14 @@ function LoginUser({ setToken, setUsername, setRole }) {
     <div className="page">
       <div className="niema">
         <h1 className="logtyt">Nie masz jeszcze konta?</h1>
-        <button className="zaloz" onClick={handleSignUp}>Załóż konto</button>
+        <button className="zaloz" onClick={handleSignUp}>
+          Załóż konto
+        </button>
       </div>
       <div className="formularz-logowania">
         <h1 className="logtyt">Logowanie</h1>
         <form onSubmit={handleSubmit}>
-          <p>Login</p>
+          <p>Nazwa użytkownika:</p>
           <input
             type="text"
             value={username}
@@ -52,7 +54,7 @@ function LoginUser({ setToken, setUsername, setRole }) {
             placeholder="Username"
             required
           />
-          <p>Hasło</p>
+          <p>Hasło:</p>
           <input
             type="password"
             value={password}
@@ -60,9 +62,13 @@ function LoginUser({ setToken, setUsername, setRole }) {
             placeholder="Password"
             required
           />
-          <button type="submit">Zaloguj</button>
+          <button className="zaloz">Zaloguj</button>
           <a href="#" className="forgot-password">
             Nie pamiętasz hasła?
+          </a>{" "}
+          <a className="policy">
+            Logując się akceptujesz Regulamin z dn. 29.05.2024 oraz Politykę
+            prywatności
           </a>
         </form>
       </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { FaUtensils, FaChartPie, FaClipboardList } from "react-icons/fa";
 import "./Section1.css";
 
 const Section1 = () => {
@@ -13,6 +14,7 @@ const Section1 = () => {
       </p>
       <div className="section1-features">
         <div className="feature">
+          <FaUtensils className="feature-icon" />
           <h3>Śledzenie Posiłków</h3>
           <p>
             Rejestruj swoje posiłki i przekąski, aby monitorować spożycie
@@ -20,6 +22,7 @@ const Section1 = () => {
           </p>
         </div>
         <div className="feature">
+          <FaChartPie className="feature-icon" />
           <h3>Analiza Składników</h3>
           <p>
             Otrzymuj szczegółowe informacje o składnikach odżywczych każdego
@@ -27,6 +30,7 @@ const Section1 = () => {
           </p>
         </div>
         <div className="feature">
+          <FaClipboardList className="feature-icon" />
           <h3>Plany Żywieniowe</h3>
           <p>
             Twórz spersonalizowane plany żywieniowe dostosowane do Twoich celów.

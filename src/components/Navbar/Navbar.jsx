@@ -16,10 +16,10 @@ const Navbar = ({ token, username, handleLogout }) => {
                 <NavLink to="/home">Home</NavLink>
               </li>
               <li>
-                <NavLink to="/about">About</NavLink>
+                <NavLink to="/about">O nas</NavLink>
               </li>
               <li>
-                <NavLink to="/contact">Contact</NavLink>
+                <NavLink to="/contact">Kontakt</NavLink>
               </li>
             </ul>
             {token ? (
