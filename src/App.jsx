@@ -27,23 +27,16 @@ function App() {
   );
   const [role, setRole] = useState(localStorage.getItem("role") || "");
 
-  const handleLogout = () => {
-    setToken("");
-    setUsername("");
-    setRole("");
-    localStorage.removeItem("token");
-    localStorage.removeItem("username");
-    localStorage.removeItem("role");
-  };
+ 
 
   return (
     <Router>
       <Navbar />
       <div>
-        {/* <nav>
+         <nav>
           <ul>
             <li>
-              <Link to="/home">Hsirmaome</Link>
+              <Link to="/home">Home</Link>
             </li>
             {role === "user" && (
               <li>
@@ -76,7 +69,7 @@ function App() {
               </li>
             )}
           </ul>
-        </nav> */}
+        </nav> 
         <Routes>
           <Route path="/" element={<Navigate to="/home" />} />
           <Route path="/home" element={<Home />} />
